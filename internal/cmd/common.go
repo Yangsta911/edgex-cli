@@ -93,7 +93,7 @@ func addFormatFlags(cmd *cobra.Command) {
 func addLimitOffsetFlags(cmd *cobra.Command) {
 	cmd.Flags().IntVarP(&limit, "limit", "l", 50, "The number of items to return. Specifying -1 will return all remaining items")
 	cmd.Flags().IntVarP(&offset, "offset", "o", 0, "The number of items to skip")
-	cmd.Flags().StringVarP(&hostaddr, "host", "x", "localhost", "set host address")
+	cmd.Flags().StringVarP(&hostaddr, "gateway", "g", "localhost", "set service gateway address")
 }
 
 func addLabelsFlag(cmd *cobra.Command) {
