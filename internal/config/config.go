@@ -31,8 +31,10 @@ type HostConfiguration struct {
 type Services map[string]service.Service
 
 // GetCoreService returns the configuration of a core service
-func GetCoreService(name string) service.Service {
-	return configuration.CoreServices[name]
+func GetCoreService(name, hostaddr string) service.Service {
+	svc := configuration.CoreServices[name]
+	svc.Host = hostaddr
+	return svc
 }
 
 // GetCoreServices returns a map of the core EdgeX microservices
@@ -43,23 +45,23 @@ func GetCoreServices() Services {
 func init() {
 	configuration.CoreServices = Services{
 		common.CoreMetaDataServiceKey: {
-			Host: "localhost",
+			Host: "",
 			Port: 59881,
 		},
 		common.CoreDataServiceKey: {
-			Host: "localhost",
+			Host: "",
 			Port: 59880,
 		},
 		common.CoreCommandServiceKey: {
-			Host: "localhost",
+			Host: "",
 			Port: 59882,
 		},
 		common.SupportSchedulerServiceKey: {
-			Host: "localhost",
+			Host: "",
 			Port: 59861,
 		},
 		common.SupportNotificationsServiceKey: {
-			Host: "localhost",
+			Host: "",
 			Port: 59860,
 		},
 	}
