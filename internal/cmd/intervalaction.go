@@ -45,6 +45,7 @@ func init() {
 	initGetIntervalActionByNameCommand(cmd)
 	initRmIntervalActionCommand(cmd)
 	initUpdateIntervalActionCommand(cmd)
+	addGatewayFlag(cmd)
 }
 
 // initListIntervalActionCommand implements support for the GET /intervalaction/all endpoint
@@ -62,6 +63,8 @@ func initListIntervalActionCommand(cmd *cobra.Command) {
 	addVerboseFlag(listCmd)
 	addLimitOffsetFlags(listCmd)
 	cmd.AddCommand(listCmd)
+	addGatewayFlag(listCmd)
+
 }
 
 // initGetIntervalActionByNameCommand implements support for the GET /intervalaction/name/{name} endpoint
@@ -79,6 +82,7 @@ func initGetIntervalActionByNameCommand(cmd *cobra.Command) {
 	addFormatFlags(nameCmd)
 	addVerboseFlag(nameCmd)
 	cmd.AddCommand(nameCmd)
+	addGatewayFlag(nameCmd)
 
 }
 
@@ -106,6 +110,8 @@ func initAddIntervalActionCommand(cmd *cobra.Command) {
 	add.MarkFlagRequired("interval")
 	add.MarkFlagRequired("address")
 	cmd.AddCommand(add)
+	addGatewayFlag(add)
+
 }
 
 // initRmIntervalActionCommand implements the DELETE /intervalaction/name/{name}
@@ -121,6 +127,8 @@ func initRmIntervalActionCommand(cmd *cobra.Command) {
 	rm.Flags().StringVarP(&intervalActionName, "name", "n", "", "Interval action name")
 	rm.MarkFlagRequired("name")
 	cmd.AddCommand(rm)
+	addGatewayFlag(rm)
+
 }
 
 // initUpdateIntervalActionCommand implements support for the PATCH /intervalaction endpoint
@@ -142,6 +150,8 @@ func initUpdateIntervalActionCommand(cmd *cobra.Command) {
 	add.Flags().StringVarP(&intervalActionAdminState, "admin-state", "", "UNLOCKED", "Admin state [LOCKED | UNLOCKED]")
 
 	cmd.AddCommand(add)
+	addGatewayFlag(add)
+
 }
 
 func handleUpdateIntervalAction(cmd *cobra.Command, args []string) error {

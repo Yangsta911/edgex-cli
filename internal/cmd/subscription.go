@@ -58,6 +58,8 @@ func initRmSubscriptionCommand(cmd *cobra.Command) {
 	rm.Flags().StringVarP(&subscriptionName, "name", "n", "", "Name of subscription to remove")
 	rm.MarkFlagRequired("name")
 	cmd.AddCommand(rm)
+	addGatewayFlag(rm)
+
 }
 
 var subscriptionName, subscriptionChannels, subscriptionReceiver string
@@ -112,6 +114,8 @@ func initAddSubscriptionCommand(cmd *cobra.Command) {
 	//admin-state"
 	//channels
 	cmd.AddCommand(add)
+	addGatewayFlag(add)
+
 }
 
 // initListSubscriptionCommand implements a number of endpoints:
@@ -141,6 +145,8 @@ func initListSubscriptionCommand(cmd *cobra.Command) {
 	addVerboseFlag(listCmd)
 	addLimitOffsetFlags(listCmd)
 	cmd.AddCommand(listCmd)
+	addGatewayFlag(listCmd)
+
 }
 
 // initGetSubscriptionByNameCommand implements the GET ​/subscription/name endpoint
@@ -158,6 +164,7 @@ func initGetSubscriptionByNameCommand(cmd *cobra.Command) {
 	addFormatFlags(nameCmd)
 	addVerboseFlag(nameCmd)
 	cmd.AddCommand(nameCmd)
+	addGatewayFlag(nameCmd)
 
 }
 

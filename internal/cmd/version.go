@@ -35,6 +35,7 @@ func init() {
 
 	rootCmd.AddCommand(cmd)
 	addStandardFlags(cmd)
+	addGatewayFlag(cmd)
 
 }
 

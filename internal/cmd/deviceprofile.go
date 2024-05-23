@@ -46,6 +46,8 @@ func init() {
 	initListDeviceProfileCommand(cmd)
 	initAddDeviceProfileCommand(cmd)
 	initGetDeviceProfileByNameCommand(cmd)
+	addGatewayFlag(cmd)
+
 }
 
 // initRmDeviceProfileCommand implements the DELETE ​/device​profile/name​/{name} endpoint
@@ -61,6 +63,8 @@ func initRmDeviceProfileCommand(cmd *cobra.Command) {
 	rmcmd.Flags().StringVarP(&deviceProfileName, "name", "n", "", "Device Profile name")
 	rmcmd.MarkFlagRequired("name")
 	cmd.AddCommand(rmcmd)
+	addGatewayFlag(rmcmd)
+
 }
 
 // initAddDeviceProfileCommand implements the POST ​/device​profile endpoint
@@ -89,6 +93,8 @@ func initAddDeviceProfileCommand(cmd *cobra.Command) {
 	add.MarkFlagRequired("name")
 	addLabelsFlag(add)
 	cmd.AddCommand(add)
+	addGatewayFlag(add)
+
 }
 
 // initListDeviceProfileCommand implements the GET ​/device​profile/all endpoint
@@ -108,6 +114,8 @@ func initListDeviceProfileCommand(cmd *cobra.Command) {
 	addVerboseFlag(listCmd)
 	addLimitOffsetFlags(listCmd)
 	addLabelsFlag(listCmd)
+	addGatewayFlag(listCmd)
+
 }
 
 // initGetDeviceProfileByNameCommand implements the GET ​/device​profile/name endpoint
@@ -125,6 +133,7 @@ func initGetDeviceProfileByNameCommand(cmd *cobra.Command) {
 	addFormatFlags(nameCmd)
 	addVerboseFlag(nameCmd)
 	cmd.AddCommand(nameCmd)
+	addGatewayFlag(nameCmd)
 
 }
 

@@ -44,6 +44,8 @@ func init() {
 	initAddIntervalCommand(cmd)
 	initRmIntervalCommand(cmd)
 	initUpdateIntervalCommand(cmd)
+	addGatewayFlag(cmd)
+
 }
 
 // initListIntervalCommand implements support for the GET /interval/all endpoint
@@ -61,6 +63,8 @@ func initListIntervalCommand(cmd *cobra.Command) {
 	addVerboseFlag(listCmd)
 	addLimitOffsetFlags(listCmd)
 	cmd.AddCommand(listCmd)
+	addGatewayFlag(listCmd)
+
 }
 
 // initGetIntervalByNameCommand implements support for the GET /interval/name/{name} endpoint
@@ -78,6 +82,7 @@ func initGetIntervalByNameCommand(cmd *cobra.Command) {
 	addFormatFlags(nameCmd)
 	addVerboseFlag(nameCmd)
 	cmd.AddCommand(nameCmd)
+	addGatewayFlag(nameCmd)
 
 }
 
@@ -100,6 +105,8 @@ func initAddIntervalCommand(cmd *cobra.Command) {
 	add.MarkFlagRequired("name")
 	add.MarkFlagRequired("interval")
 	cmd.AddCommand(add)
+	addGatewayFlag(add)
+
 }
 
 // initRmIntervalCommand implements the DELETE /interval/name/{name}
@@ -115,6 +122,8 @@ func initRmIntervalCommand(cmd *cobra.Command) {
 	rm.Flags().StringVarP(&intervalName, "name", "n", "", "Interval name")
 	rm.MarkFlagRequired("name")
 	cmd.AddCommand(rm)
+	addGatewayFlag(rm)
+
 }
 
 // initUpdateIntervalCommand implements support for the PATCH /interval endpoint
@@ -134,6 +143,8 @@ func initUpdateIntervalCommand(cmd *cobra.Command) {
 	add.Flags().StringVarP(&intervalEnd, "end", "e", "", "End time in ISO 8601 format YYYYMMDD'T'HHmmss")
 
 	cmd.AddCommand(add)
+	addGatewayFlag(add)
+
 }
 
 func handleUpdateInterval(cmd *cobra.Command, args []string) error {

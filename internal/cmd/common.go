@@ -50,6 +50,8 @@ func getSelectedServiceKey() string {
 
 func getSupportSchedulerService() service.Service {
 	return config.GetCoreService(common.SupportSchedulerServiceKey, hostaddr)
+
+	return config.GetCoreService(common.SupportSchedulerServiceKey, hostaddr)
 }
 
 func getSupportNotificationsService() service.Service {
@@ -74,7 +76,7 @@ func getSelectedServices() map[string]service.Service {
 		if json {
 			key = common.CoreMetaDataServiceKey
 		} else {
-			return config.GetCoreServices()
+			return config.GetCoreServices(hostaddr)
 		}
 	}
 	return map[string]service.Service{key: config.GetCoreService(key, hostaddr)}
@@ -129,6 +131,10 @@ func addStandardFlags(cmd *cobra.Command) {
 	cmd.Flags().BoolVarP(&metadata, "metadata", "m", false, "use core-metadata service endpoint")
 	cmd.Flags().BoolVarP(&scheduler, "scheduler", "s", false, "use support-scheduler service endpoint")
 	cmd.Flags().BoolVarP(&notifications, "notifications", "n", false, "use support-notifications service endpoint")
+}
+
+func addGatewayFlag(cmd *cobra.Command) {
+	cmd.Flags().StringVarP(&hostaddr, "gateway", "g", "localhost", "set service gateway address")
 }
 
 func getRFC822Time(t int64) string {
