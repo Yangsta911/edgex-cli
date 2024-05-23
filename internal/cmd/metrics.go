@@ -36,6 +36,7 @@ func init() {
 	}
 	rootCmd.AddCommand(cmd)
 	addStandardFlags(cmd)
+	addGatewayFlag(cmd)
 }
 
 func handleMetrics(cmd *cobra.Command, args []string) error {

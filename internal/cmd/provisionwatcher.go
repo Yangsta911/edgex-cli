@@ -46,7 +46,6 @@ func init() {
 	initGetProvisionWatcherByNameCommand(cmd)
 	initRmProvisionWatcherCommand(cmd)
 	initUpdateProvisionWatcherCommand(cmd)
-
 }
 
 // initRmProvisionWatcherCommand implements the DELETE ​/provisionwatcher​/name​/{name} endpoint
@@ -62,6 +61,8 @@ func initRmProvisionWatcherCommand(cmd *cobra.Command) {
 	rmcmd.Flags().StringVarP(&provisionWatcherName, "name", "n", "", "Provision watcher name")
 	rmcmd.MarkFlagRequired("name")
 	cmd.AddCommand(rmcmd)
+	addGatewayFlag(rmcmd)
+
 }
 
 // initListProvisionWatcherCommand implements the GET ​/provisionwatcher​/all endpoint:
@@ -81,6 +82,7 @@ func initListProvisionWatcherCommand(cmd *cobra.Command) {
 	addVerboseFlag(listCmd)
 	addLimitOffsetFlags(listCmd)
 	addLabelsFlag(listCmd)
+	addGatewayFlag(listCmd)
 
 }
 
@@ -108,6 +110,8 @@ edgex-cli provisionwatcher add -n watcher -i "e69ec9b4-f164-4e09-8b1b-988fc545f9
 	add.MarkFlagRequired("name")
 	add.MarkFlagRequired("id")
 	cmd.AddCommand(add)
+	addGatewayFlag(add)
+
 }
 
 // initAddProvisionWatcherCommand implements the POST ​/provisionwatcher endpoint
@@ -135,6 +139,8 @@ Example:
 	add.MarkFlagRequired("service")
 	add.MarkFlagRequired("identifiers")
 	cmd.AddCommand(add)
+	addGatewayFlag(add)
+
 }
 
 // initGetProvisionWatcherByNameCommand implements the GET ​/provisionwatcher/name/{name}
@@ -152,6 +158,7 @@ func initGetProvisionWatcherByNameCommand(cmd *cobra.Command) {
 	addFormatFlags(nameCmd)
 	addVerboseFlag(nameCmd)
 	cmd.AddCommand(nameCmd)
+	addGatewayFlag(nameCmd)
 
 }
 

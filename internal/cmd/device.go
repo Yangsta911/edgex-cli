@@ -42,6 +42,7 @@ func init() {
 	initGetDeviceByNameCommand(cmd)
 	initRmDeviceCommand(cmd)
 	initUpdateDeviceCommand(cmd)
+	addGatewayFlag(cmd)
 
 }
 
@@ -61,6 +62,8 @@ func initRmDeviceCommand(cmd *cobra.Command) {
 	rmcmd.Flags().StringVarP(&deviceName, "name", "n", "", "Device name")
 	rmcmd.MarkFlagRequired("name")
 	cmd.AddCommand(rmcmd)
+	addGatewayFlag(rmcmd)
+
 }
 
 // initListDeviceCommand implements the GET ​/device​/all endpoint:
@@ -80,6 +83,7 @@ func initListDeviceCommand(cmd *cobra.Command) {
 	addVerboseFlag(listCmd)
 	addLimitOffsetFlags(listCmd)
 	addLabelsFlag(listCmd)
+	addGatewayFlag(listCmd)
 	cmd.AddCommand(listCmd)
 }
 
@@ -112,6 +116,8 @@ Example:
 	updateCmd.MarkFlagRequired("name")
 	updateCmd.MarkFlagRequired("id")
 	cmd.AddCommand(updateCmd)
+	addGatewayFlag(updateCmd)
+
 }
 
 // initAddDeviceCommand implements the POST ​/device endpoint
@@ -144,6 +150,8 @@ Example:
 	add.MarkFlagRequired("profile")
 	add.MarkFlagRequired("protocols")
 	cmd.AddCommand(add)
+	addGatewayFlag(add)
+
 }
 
 // initGetDeviceByNameCommand implements the GET ​/device/name endpoint
@@ -161,6 +169,7 @@ func initGetDeviceByNameCommand(cmd *cobra.Command) {
 	addFormatFlags(nameCmd)
 	addVerboseFlag(nameCmd)
 	cmd.AddCommand(nameCmd)
+	addGatewayFlag(nameCmd)
 
 }
 

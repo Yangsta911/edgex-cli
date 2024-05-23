@@ -67,6 +67,8 @@ func initReadCommand(cmd *cobra.Command) {
 	readCmd.MarkFlagRequired("command")
 	cmd.AddCommand(readCmd)
 	addFormatFlags(readCmd)
+	addGatewayFlag(readCmd)
+
 }
 
 func initWriteCommand(cmd *cobra.Command) {
@@ -85,6 +87,8 @@ func initWriteCommand(cmd *cobra.Command) {
 	writeCmd.MarkFlagRequired("command")
 	cmd.AddCommand(writeCmd)
 	addFormatFlags(writeCmd)
+	addGatewayFlag(writeCmd)
+
 }
 
 func initListCommand(cmd *cobra.Command) {
@@ -99,6 +103,8 @@ func initListCommand(cmd *cobra.Command) {
 	addLimitOffsetFlags(listCmd)
 	cmd.AddCommand(listCmd)
 	addFormatFlags(listCmd)
+	addGatewayFlag(listCmd)
+
 }
 
 func handleReadCommand(cmd *cobra.Command, args []string) error {

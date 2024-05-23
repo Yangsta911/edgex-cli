@@ -38,7 +38,22 @@ func GetCoreService(name, hostaddr string) service.Service {
 }
 
 // GetCoreServices returns a map of the core EdgeX microservices
-func GetCoreServices() Services {
+func GetCoreServices(hostaddr string) Services {
+	svc := configuration.CoreServices[common.CoreMetaDataServiceKey]
+	svc.Host = hostaddr
+	configuration.CoreServices[common.CoreMetaDataServiceKey] = svc
+	svc = configuration.CoreServices[common.CoreDataServiceKey]
+	svc.Host = hostaddr
+	configuration.CoreServices[common.CoreDataServiceKey] = svc
+	svc = configuration.CoreServices[common.CoreCommandServiceKey]
+	svc.Host = hostaddr
+	configuration.CoreServices[common.CoreCommandServiceKey] = svc
+	svc = configuration.CoreServices[common.SupportSchedulerServiceKey]
+	svc.Host = hostaddr
+	configuration.CoreServices[common.SupportSchedulerServiceKey] = svc
+	svc = configuration.CoreServices[common.SupportNotificationsServiceKey]
+	svc.Host = hostaddr
+	configuration.CoreServices[common.SupportNotificationsServiceKey] = svc
 	return configuration.CoreServices
 }
 

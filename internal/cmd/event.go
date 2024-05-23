@@ -74,6 +74,8 @@ func initListEventCommand(cmd *cobra.Command) {
 	addVerboseFlag(listCmd)
 	listCmd.Flags().IntVarP(&eventLimit, "limit", "l", 50, "The number of items to return. Specifying -1 will return all remaining items")
 	listCmd.Flags().IntVarP(&eventOffset, "offset", "o", 0, "The number of items to skip")
+	addGatewayFlag(listCmd)
+
 }
 
 func initCountEventCommand(cmd *cobra.Command) {
@@ -88,6 +90,8 @@ func initCountEventCommand(cmd *cobra.Command) {
 	countCmd.Flags().StringVarP(&eventDevice, "device", "d", "", "Device name")
 	cmd.AddCommand(countCmd)
 	addFormatFlags(countCmd)
+	addGatewayFlag(countCmd)
+
 }
 
 func initRmEventCommand(cmd *cobra.Command) {
@@ -105,6 +109,8 @@ func initRmEventCommand(cmd *cobra.Command) {
 	rmCmd.Flags().StringVarP(&eventDevice, "device", "d", "", "Device name")
 	rmCmd.Flags().IntVarP(&eventAge, "age", "a", 0, "Event age (in milliseconds)")
 	cmd.AddCommand(rmCmd)
+	addGatewayFlag(rmCmd)
+
 }
 
 func initAddEventCommand(cmd *cobra.Command) {
@@ -124,6 +130,8 @@ func initAddEventCommand(cmd *cobra.Command) {
 	addCmd.MarkFlagRequired("profile")
 	addCmd.MarkFlagRequired("source")
 	cmd.AddCommand(addCmd)
+	addGatewayFlag(addCmd)
+
 }
 
 func handleAddEvents(cmd *cobra.Command, args []string) error {

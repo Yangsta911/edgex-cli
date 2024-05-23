@@ -45,6 +45,8 @@ func init() {
 	initAddDeviceServiceCommand(cmd)
 	initUpdateDeviceServiceCommand(cmd)
 	initGetDeviceServiceByNameCommand(cmd)
+	addGatewayFlag(cmd)
+
 }
 
 // initRmDeviceServiceCommand implements the DELETE ​/deviceservice/name​/{name} endpoint
@@ -60,6 +62,8 @@ func initRmDeviceServiceCommand(cmd *cobra.Command) {
 	rmcmd.Flags().StringVarP(&deviceServiceName, "name", "n", "", "Device name")
 	rmcmd.MarkFlagRequired("name")
 	cmd.AddCommand(rmcmd)
+	addGatewayFlag(rmcmd)
+
 }
 
 // initAddDeviceServiceCommand implements the POST ​/deviceservice/ endpoint
@@ -85,6 +89,8 @@ Example:
 	add.MarkFlagRequired("name")
 	add.MarkFlagRequired("base-address")
 	cmd.AddCommand(add)
+	addGatewayFlag(add)
+
 }
 
 // initListDeviceServiceCommand implements the GET ​/deviceservice/all endpoint
@@ -104,6 +110,7 @@ func initListDeviceServiceCommand(cmd *cobra.Command) {
 	addVerboseFlag(listCmd)
 	addLimitOffsetFlags(listCmd)
 	addLabelsFlag(listCmd)
+	addGatewayFlag(listCmd)
 
 }
 
@@ -133,6 +140,8 @@ Example:
 	updateCmd.MarkFlagRequired("name")
 	updateCmd.MarkFlagRequired("id")
 	cmd.AddCommand(updateCmd)
+	addGatewayFlag(updateCmd)
+
 }
 
 // initGetDeviceServiceByNameCommand implements the GET /deviceservice/name/{name} endpoint
@@ -150,6 +159,7 @@ func initGetDeviceServiceByNameCommand(cmd *cobra.Command) {
 	addFormatFlags(nameCmd)
 	addVerboseFlag(nameCmd)
 	cmd.AddCommand(nameCmd)
+	addGatewayFlag(nameCmd)
 
 }
 

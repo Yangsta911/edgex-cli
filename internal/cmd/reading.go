@@ -35,6 +35,7 @@ func init() {
 	readingCmd := initReadingCommand()
 	initListReadingCommand(readingCmd)
 	initCountReadingCommand(readingCmd)
+
 }
 
 func initReadingCommand() *cobra.Command {
@@ -45,6 +46,7 @@ func initReadingCommand() *cobra.Command {
 		SilenceUsage: true,
 	}
 	rootCmd.AddCommand(cmd)
+	addGatewayFlag(cmd)
 	return cmd
 }
 
@@ -61,6 +63,7 @@ func initListReadingCommand(cmd *cobra.Command) {
 	cmd.AddCommand(listCmd)
 	addFormatFlags(listCmd)
 	addVerboseFlag(listCmd)
+	addGatewayFlag(listCmd)
 
 }
 
@@ -76,6 +79,8 @@ func initCountReadingCommand(cmd *cobra.Command) {
 	countCmd.Flags().StringVarP(&readingDevice, "device", "d", "", "Device name")
 	cmd.AddCommand(countCmd)
 	addFormatFlags(countCmd)
+	addGatewayFlag(countCmd)
+
 }
 
 func handleCountReadings(cmd *cobra.Command, args []string) error {

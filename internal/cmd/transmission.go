@@ -45,6 +45,7 @@ func init() {
 	initRmTransmissionCommand(cmd)
 	initListTransmissionCommand(cmd)
 	initGetTransmissionByIdCommand(cmd)
+
 }
 
 // initRmTransmissionCommand implements the DELETE /transmission/age/{age}
@@ -61,20 +62,22 @@ func initRmTransmissionCommand(cmd *cobra.Command) {
 	rm.Flags().IntVarP(&transmissionAge, "age", "a", 0, "The minimum age of transmissions to deleted (in milliseconds)")
 	rm.MarkFlagRequired("age")
 	cmd.AddCommand(rm)
+	addGatewayFlag(rm)
+
 }
 
 // initListTransmissionCommand implements a number of endpoints:
-// - GET /transmission/all
-//   "Given the entire range of transmissions sorted in descending order of created time,
-//   returns a portion of that range according to the offset and limit parameters."
-// - GET /transmission/subscription/name/{name}
-//   "Returns a paginated list of transmissions that originated with the specified subscription."
-// - GET /transmission/start/{start}/end/{end}
-//   "Allows querying of transmissions by their creation timestamp within a
-//   given time range, sorted in descending order. Results are paginated.
-// - GET /transmission/status/{status}
-//   "Allows retrieval of the transmissions associated with the specified status.
-//    Ordered by create timestamp descending.""
+//   - GET /transmission/all
+//     "Given the entire range of transmissions sorted in descending order of created time,
+//     returns a portion of that range according to the offset and limit parameters."
+//   - GET /transmission/subscription/name/{name}
+//     "Returns a paginated list of transmissions that originated with the specified subscription."
+//   - GET /transmission/start/{start}/end/{end}
+//     "Allows querying of transmissions by their creation timestamp within a
+//     given time range, sorted in descending order. Results are paginated.
+//   - GET /transmission/status/{status}
+//     "Allows retrieval of the transmissions associated with the specified status.
+//     Ordered by create timestamp descending.""
 func initListTransmissionCommand(cmd *cobra.Command) {
 	var listCmd = &cobra.Command{
 		Use:   "list",
@@ -95,6 +98,8 @@ func initListTransmissionCommand(cmd *cobra.Command) {
 	addVerboseFlag(listCmd)
 	addLimitOffsetFlags(listCmd)
 	cmd.AddCommand(listCmd)
+	addGatewayFlag(listCmd)
+
 }
 
 // initGetTransmissionByIdCommand implements the GET ​/transmission/id endpoint
@@ -112,6 +117,7 @@ func initGetTransmissionByIdCommand(cmd *cobra.Command) {
 	addFormatFlags(nameCmd)
 	addVerboseFlag(nameCmd)
 	cmd.AddCommand(nameCmd)
+	addGatewayFlag(nameCmd)
 
 }
 

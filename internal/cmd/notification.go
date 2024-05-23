@@ -62,6 +62,8 @@ func initCleanupNotificationCommand(cmd *cobra.Command) {
 		SilenceUsage: true,
 	}
 	cmd.AddCommand(cleanup)
+	addGatewayFlag(cleanup)
+
 }
 
 // initRmDeviceCommand implements the DELETE /notification/id/{id}
@@ -77,6 +79,8 @@ func initRmNotificationCommand(cmd *cobra.Command) {
 	rm.Flags().StringVarP(&notificationId, "id", "i", "", "The ID that identifies the notification")
 	rm.MarkFlagRequired("id")
 	cmd.AddCommand(rm)
+	addGatewayFlag(rm)
+
 }
 
 // initAddNotificationCommand implements the POST /notification endpoint
@@ -102,6 +106,8 @@ func initAddNotificationCommand(cmd *cobra.Command) {
 	add.MarkFlagRequired("content")
 	add.MarkFlagRequired("category")
 	cmd.AddCommand(add)
+	addGatewayFlag(add)
+
 }
 
 // initListNotificationCommand implements a number of endpoints:
@@ -134,6 +140,8 @@ func initListNotificationCommand(cmd *cobra.Command) {
 	addVerboseFlag(listCmd)
 	addLimitOffsetFlags(listCmd)
 	cmd.AddCommand(listCmd)
+	addGatewayFlag(listCmd)
+
 }
 
 func handleCleanupNotifications(cmd *cobra.Command, args []string) error {
