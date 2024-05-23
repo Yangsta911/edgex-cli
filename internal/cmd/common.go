@@ -31,7 +31,6 @@ import (
 var verbose, metadata, data, command, notifications, scheduler, json bool
 var limit, offset int
 var labels, hostaddr string
-var labels, hostaddr string
 
 func getSelectedServiceKey() string {
 	if metadata {
@@ -51,26 +50,23 @@ func getSelectedServiceKey() string {
 
 func getSupportSchedulerService() service.Service {
 	return config.GetCoreService(common.SupportSchedulerServiceKey, hostaddr)
+
 	return config.GetCoreService(common.SupportSchedulerServiceKey, hostaddr)
 }
 
 func getSupportNotificationsService() service.Service {
 	return config.GetCoreService(common.SupportNotificationsServiceKey, hostaddr)
-	return config.GetCoreService(common.SupportNotificationsServiceKey, hostaddr)
 }
 
 func getCoreMetaDataService() service.Service {
-	return config.GetCoreService(common.CoreMetaDataServiceKey, hostaddr)
 	return config.GetCoreService(common.CoreMetaDataServiceKey, hostaddr)
 }
 
 func getCoreDataService() service.Service {
 	return config.GetCoreService(common.CoreDataServiceKey, hostaddr)
-	return config.GetCoreService(common.CoreDataServiceKey, hostaddr)
 }
 
 func getCoreCommandService() service.Service {
-	return config.GetCoreService(common.CoreCommandServiceKey, hostaddr)
 	return config.GetCoreService(common.CoreCommandServiceKey, hostaddr)
 }
 
@@ -83,7 +79,6 @@ func getSelectedServices() map[string]service.Service {
 			return config.GetCoreServices(hostaddr)
 		}
 	}
-	return map[string]service.Service{key: config.GetCoreService(key, hostaddr)}
 	return map[string]service.Service{key: config.GetCoreService(key, hostaddr)}
 
 }
